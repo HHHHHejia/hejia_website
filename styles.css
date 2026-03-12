@@ -171,6 +171,49 @@ h1 {
   line-height: 1.75;
 }
 
+.research-body {
+  gap: 18px;
+}
+
+.research-topics,
+.paper-list {
+  display: grid;
+  gap: 10px;
+}
+
+.research-topic,
+.paper-item {
+  display: grid;
+  gap: 6px;
+  padding: 14px 0;
+  border-top: 1px solid var(--line);
+}
+
+.topic-label,
+.paper-meta {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.paper-item {
+  text-decoration: none;
+  transition: opacity 160ms ease;
+}
+
+.paper-item:hover {
+  opacity: 0.72;
+}
+
+.paper-title {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 30px;
+  line-height: 1.06;
+  letter-spacing: -0.03em;
+}
+
 .photo-body {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 280px;
