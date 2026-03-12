@@ -6,138 +6,218 @@
     <title>Hejia Geng</title>
     <meta
       name="description"
-      content="Hejia Geng personal website. Research, systems, and machine intelligence."
+      content="Hejia Geng personal website focused on startup, research, photo, and project."
     />
     <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <div class="noise"></div>
-    <main class="shell">
+    <div class="paper-grain" aria-hidden="true"></div>
+    <div class="page">
       <header class="hero">
         <nav class="topbar">
-          <span class="brand">HG/26</span>
+          <a class="monogram" href="#">HG</a>
           <div class="nav-links">
-            <a href="#about">About</a>
-            <a href="#work">Work</a>
-            <a href="#contact">Contact</a>
+            <a href="#startup">Startup</a>
+            <a href="#research">Research</a>
+            <a href="#photo">Photo</a>
+            <a href="#project">Project</a>
           </div>
         </nav>
 
-        <section class="hero-copy">
-          <p class="eyebrow">Personal website / research profile / minimal system</p>
-          <h1>Hejia Geng</h1>
-          <p class="lede">
-            Building machine intelligence with a bias toward robustness, efficient
-            systems, and future-facing interfaces.
-          </p>
-          <div class="hero-actions">
-            <a class="button primary" href="#contact">Get in touch</a>
-            <a class="button secondary" href="#work">Selected work</a>
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow">Founder / Researcher / Builder</p>
+            <h1>Hejia Geng</h1>
+            <p class="lede">
+              Kyoto restraint, California clarity. Building startups, research,
+              and products with taste, calm, and technical depth.
+            </p>
+            <div class="hero-actions">
+              <a class="button primary" href="#startup">Enter sections</a>
+              <a class="button secondary" href="#project">View projects</a>
+            </div>
+          </div>
+
+          <aside class="hero-note">
+            <span class="seal">Kyoto aesthetic</span>
+            <p>
+              The goal is not to look futuristic. The goal is to feel inevitable.
+            </p>
+            <ul class="quiet-list">
+              <li>Quiet surfaces</li>
+              <li>Sharp thinking</li>
+              <li>No decorative noise</li>
+            </ul>
+          </aside>
+        </div>
+      </header>
+
+      <main>
+        <section class="section" id="startup">
+          <div class="section-meta">
+            <span class="section-index">01</span>
+            <span class="section-label">Startup</span>
+          </div>
+          <div class="section-content">
+            <div class="section-heading">
+              <h2>Startups should feel precise.</h2>
+              <p>
+                I like building products that remove friction, concentrate value,
+                and turn serious technology into something people immediately
+                trust.
+              </p>
+            </div>
+
+            <div class="startup-grid">
+              <article class="soft-card">
+                <span class="card-tag">Direction</span>
+                <h3>Applied AI</h3>
+                <p>
+                  Product instincts shaped by utility first: tools that think
+                  clearly, move fast, and stay legible.
+                </p>
+              </article>
+              <article class="soft-card">
+                <span class="card-tag">Style</span>
+                <h3>Small teams</h3>
+                <p>
+                  Compact execution, strong taste, and an intolerance for noisy
+                  interfaces or bloated systems.
+                </p>
+              </article>
+              <article class="soft-card">
+                <span class="card-tag">Principle</span>
+                <h3>Calm ambition</h3>
+                <p>
+                  High standards without loudness. Build the product so the value
+                  speaks before the marketing does.
+                </p>
+              </article>
+            </div>
           </div>
         </section>
 
-        <aside class="status-panel">
-          <p class="status-label">Current focus</p>
-          <ul>
-            <li>LLM systems</li>
-            <li>Spiking neural networks</li>
-            <li>Robustness + alignment</li>
-          </ul>
-        </aside>
-      </header>
-
-      <section class="grid-section" id="about">
-        <div class="section-tag">01</div>
-        <div class="section-body">
-          <h2>About</h2>
-          <p>
-            Hejia Geng is an AI researcher with academic background spanning
-            physics and electrical engineering. This version of the site is a
-            concise digital profile: clean structure, technical tone, and a
-            deliberately restrained visual system.
-          </p>
-          <p>
-            Publicly available profiles indicate prior study at USTC and UCSB,
-            with research interests covering large language models, spiking
-            neural networks, transformer systems, and adversarial robustness.
-          </p>
-        </div>
-      </section>
-
-      <section class="grid-section" id="work">
-        <div class="section-tag">02</div>
-        <div class="section-body">
-          <h2>Selected directions</h2>
-          <div class="card-grid">
-            <article class="card">
-              <span class="card-index">A1</span>
-              <h3>LLM Research</h3>
-              <p>
-                Work centered on language models, instruction following, and
-                practical alignment under constrained real-world settings.
-              </p>
-            </article>
-            <article class="card">
-              <span class="card-index">A2</span>
-              <h3>Neuromorphic Learning</h3>
-              <p>
-                Interest in spiking neural networks and efficient architectures
-                for next-generation intelligence systems.
-              </p>
-            </article>
-            <article class="card">
-              <span class="card-index">A3</span>
-              <h3>Robust Systems</h3>
-              <p>
-                Focus on reliability, adversarial resilience, and model behavior
-                under shifting constraints.
-              </p>
-            </article>
+        <section class="section" id="research">
+          <div class="section-meta">
+            <span class="section-index">02</span>
+            <span class="section-label">Research</span>
           </div>
-        </div>
-      </section>
+          <div class="section-content">
+            <div class="section-heading">
+              <h2>Research with edge and discipline.</h2>
+              <p>
+                Current interests span model intelligence, efficient learning,
+                and robustness under real constraints.
+              </p>
+            </div>
 
-      <section class="grid-section">
-        <div class="section-tag">03</div>
-        <div class="section-body timeline-wrap">
-          <h2>Trajectory</h2>
-          <div class="timeline">
-            <div class="timeline-item">
-              <span class="timeline-year">2017-2021</span>
-              <p>Physics studies at USTC.</p>
-            </div>
-            <div class="timeline-item">
-              <span class="timeline-year">2022-2024</span>
-              <p>Electrical Engineering master's study at UCSB.</p>
-            </div>
-            <div class="timeline-item">
-              <span class="timeline-year">2025-Now</span>
-              <p>Independent research and future product building.</p>
+            <div class="research-list">
+              <article class="research-row">
+                <span class="research-name">Large Language Models</span>
+                <p>
+                  Alignment, instruction quality, and useful behavior in
+                  high-leverage production settings.
+                </p>
+              </article>
+              <article class="research-row">
+                <span class="research-name">Spiking Networks</span>
+                <p>
+                  Efficient architectures and future hardware-oriented learning
+                  systems beyond standard dense inference.
+                </p>
+              </article>
+              <article class="research-row">
+                <span class="research-name">Robustness</span>
+                <p>
+                  Reliability, adversarial pressure, and model performance when
+                  assumptions break.
+                </p>
+              </article>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section class="grid-section" id="contact">
-        <div class="section-tag">04</div>
-        <div class="section-body contact-block">
-          <h2>Contact</h2>
-          <p>
-            This is a first-pass homepage. It is designed to be expanded with
-            publication links, project pages, a CV, and external profiles.
-          </p>
-          <a class="contact-link" href="mailto:hello@hejia-geng.com"
-            >hello@hejia-geng.com</a
-          >
-        </div>
-      </section>
-    </main>
+        <section class="section photo-section" id="photo">
+          <div class="section-meta">
+            <span class="section-index">03</span>
+            <span class="section-label">Photo</span>
+          </div>
+          <div class="section-content photo-layout">
+            <div class="photo-copy">
+              <div class="section-heading">
+                <h2>A portrait should carry silence.</h2>
+                <p>
+                  This first pass uses your current GitHub portrait as the anchor
+                  image. Later, this should be replaced by a cleaner editorial
+                  photograph with softer light.
+                </p>
+              </div>
+              <div class="photo-note">
+                <span class="card-tag">First-pass image</span>
+                <p>
+                  Framed with the same philosophy as the site: warm background,
+                  subtle contrast, and room to breathe.
+                </p>
+              </div>
+            </div>
+
+            <figure class="portrait-frame">
+              <img src="./portrait.jpg" alt="Portrait of Hejia Geng" />
+              <figcaption>Hejia Geng</figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <section class="section" id="project">
+          <div class="section-meta">
+            <span class="section-index">04</span>
+            <span class="section-label">Project</span>
+          </div>
+          <div class="section-content">
+            <div class="section-heading">
+              <h2>Projects that deserve their own quiet.</h2>
+              <p>
+                A few directions worth presenting with more depth once the site
+                expands into full case studies.
+              </p>
+            </div>
+
+            <div class="project-grid">
+              <article class="project-card">
+                <span class="project-number">01</span>
+                <h3>AI Lawyer</h3>
+                <p>
+                  Applied legal intelligence with stronger reasoning, cleaner
+                  workflows, and product-grade usability.
+                </p>
+              </article>
+              <article class="project-card">
+                <span class="project-number">02</span>
+                <h3>Research Systems</h3>
+                <p>
+                  Tooling for experiments, evaluation loops, and model behavior
+                  that is inspectable instead of opaque.
+                </p>
+              </article>
+              <article class="project-card">
+                <span class="project-number">03</span>
+                <h3>Future Interfaces</h3>
+                <p>
+                  Software that feels lighter, calmer, and more intelligent than
+                  conventional dashboard design.
+                </p>
+              </article>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
   </body>
 </html>
