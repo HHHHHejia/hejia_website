@@ -205,13 +205,15 @@ h1 {
 }
 
 .research-topics,
-.paper-list {
+.paper-list,
+.roadmap-list {
   display: grid;
   gap: 10px;
 }
 
 .research-topic,
-.paper-item {
+.paper-item,
+.roadmap-item {
   display: grid;
   gap: 6px;
   padding: 14px 0;
@@ -231,6 +233,12 @@ h1 {
 
 .paper-item:hover {
   opacity: 0.72;
+}
+
+.roadmap-item p {
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.75;
 }
 
 .paper-title {
