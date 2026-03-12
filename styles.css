@@ -69,8 +69,10 @@ p {
 
 .monogram,
 .eyebrow,
-.section-index,
-.section-label,
+.entry-index,
+.topic-label,
+.paper-meta,
+.block-kicker,
 .photo-placeholder span {
   font-family: "IBM Plex Mono", monospace;
   letter-spacing: 0.08em;
@@ -93,14 +95,33 @@ p {
   font-size: 13px;
 }
 
-.hero {
-  min-height: 68vh;
-  display: flex;
-  flex-direction: column;
+.nav-links a:hover,
+.text-link:hover {
+  color: var(--accent);
+}
+
+h1,
+h2,
+.entry-title,
+.paper-title {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+}
+
+.hero-copy,
+.detail-hero {
+  max-width: 760px;
+}
+
+.landing-main {
+  min-height: calc(100vh - 90px);
+  display: grid;
+  align-content: center;
+  gap: 52px;
 }
 
 .hero-copy {
-  margin: auto 0 72px;
   max-width: 700px;
 }
 
@@ -108,13 +129,6 @@ p {
   color: var(--accent);
   font-size: 12px;
   margin-bottom: 20px;
-}
-
-h1,
-h2 {
-  font-family: "Cormorant Garamond", serif;
-  font-weight: 600;
-  letter-spacing: -0.04em;
 }
 
 h1 {
@@ -129,50 +143,65 @@ h1 {
   line-height: 1.6;
 }
 
-.sections {
+.entry-list {
   border-top: 1px solid var(--line);
 }
 
-.section {
+.entry-card {
   display: grid;
-  grid-template-columns: 140px minmax(0, 1fr);
-  gap: 24px;
-  padding: 34px 0;
+  grid-template-columns: 72px minmax(0, 1fr) 180px;
+  gap: 20px;
+  align-items: center;
+  padding: 22px 0;
+  text-decoration: none;
   border-bottom: 1px solid var(--line);
 }
 
-.section-meta {
-  display: grid;
-  gap: 6px;
-  align-content: start;
-  padding-top: 8px;
+.entry-card:hover .entry-title {
+  color: var(--accent);
 }
 
-.section-index,
-.section-label {
+.entry-index,
+.block-kicker {
+  color: var(--accent);
+  font-size: 11px;
+}
+
+.entry-title {
+  font-size: clamp(38px, 5vw, 62px);
+  line-height: 0.98;
+}
+
+.entry-copy {
   color: var(--muted);
-  font-size: 12px;
+  font-size: 16px;
+  text-align: right;
 }
 
-.section-body {
+.detail-main {
   display: grid;
-  gap: 10px;
-  align-items: start;
+  gap: 48px;
+  padding-top: 72px;
 }
 
-.section-body h2 {
+.content-block {
+  display: grid;
+  gap: 16px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+}
+
+.content-block h2 {
   font-size: clamp(38px, 5vw, 64px);
   line-height: 0.98;
 }
 
-.section-body p {
+.content-block p,
+.research-topic p,
+.entry-copy {
   color: var(--muted);
   font-size: 17px;
   line-height: 1.75;
-}
-
-.research-body {
-  gap: 18px;
 }
 
 .research-topics,
@@ -191,11 +220,8 @@ h1 {
 
 .topic-label,
 .paper-meta {
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
   color: var(--accent);
+  font-size: 11px;
 }
 
 .paper-item {
@@ -208,17 +234,20 @@ h1 {
 }
 
 .paper-title {
-  font-family: "Cormorant Garamond", serif;
   font-size: 30px;
   line-height: 1.06;
   letter-spacing: -0.03em;
 }
 
-.photo-body {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 280px;
-  gap: 24px;
-  align-items: center;
+.text-link {
+  width: fit-content;
+  margin-top: 8px;
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.photo-block {
+  max-width: 520px;
 }
 
 .photo-placeholder {
@@ -229,6 +258,10 @@ h1 {
   border-radius: 28px;
   background:
     linear-gradient(180deg, rgba(255, 251, 246, 0.86), rgba(244, 235, 222, 0.72));
+}
+
+.photo-placeholder.large {
+  width: min(100%, 420px);
 }
 
 .photo-placeholder span {
@@ -251,19 +284,21 @@ h1 {
     flex-wrap: wrap;
   }
 
-  .hero {
-    min-height: 56vh;
+  .landing-main {
+    min-height: auto;
+    padding-top: 64px;
   }
 
-  .section,
-  .photo-body {
+  .entry-card {
     grid-template-columns: 1fr;
+    gap: 8px;
   }
 
-  .section-meta {
-    grid-auto-flow: column;
-    justify-content: start;
-    gap: 12px;
-    padding-top: 0;
+  .entry-copy {
+    text-align: left;
+  }
+
+  .detail-main {
+    padding-top: 48px;
   }
 }

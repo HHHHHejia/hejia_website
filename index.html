@@ -6,7 +6,7 @@
     <title>Hejia Geng</title>
     <meta
       name="description"
-      content="Minimal personal website for Hejia Geng."
+      content="Personal website for Hejia Geng."
     />
     <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -17,159 +17,49 @@
     />
     <link rel="stylesheet" href="./styles.css" />
   </head>
-  <body>
+  <body class="landing-page">
     <div class="paper-grain" aria-hidden="true"></div>
     <div class="page">
-      <header class="hero">
+      <header class="site-header">
         <nav class="topbar">
-          <a class="monogram" href="#">HG</a>
+          <a class="monogram" href="./index.html">HG</a>
           <div class="nav-links">
-            <a href="#startup">Startup</a>
-            <a href="#research">Research</a>
-            <a href="#photo">Photo</a>
-            <a href="#project">Project</a>
+            <a href="./startup.html">Startup</a>
+            <a href="./research.html">Research</a>
+            <a href="./photo.html">Photo</a>
+            <a href="./project.html">Project</a>
           </div>
         </nav>
+      </header>
 
-        <div class="hero-copy">
+      <main class="landing-main">
+        <section class="hero-copy">
           <p class="eyebrow">Personal Website</p>
           <h1>Hejia Geng</h1>
           <p class="lede">Founder, researcher, builder.</p>
-        </div>
-      </header>
-
-      <main class="sections">
-        <section class="section" id="startup">
-          <div class="section-meta">
-            <span class="section-index">01</span>
-            <span class="section-label">Startup</span>
-          </div>
-          <div class="section-body">
-            <h2>Startup</h2>
-            <p>To be added.</p>
-          </div>
         </section>
 
-        <section class="section" id="research">
-          <div class="section-meta">
-            <span class="section-index">02</span>
-            <span class="section-label">Research</span>
-          </div>
-          <div class="section-body research-body">
-            <div class="research-intro">
-              <h2>Research</h2>
-              <p>
-                Recent work spans agentic LLM systems, robust prompting, and
-                spiking neural networks.
-              </p>
-            </div>
-
-            <div class="research-topics" aria-label="Research topics">
-              <article class="research-topic">
-                <span class="topic-label">Focus</span>
-                <p>Agentic LLMs and RL post-training</p>
-              </article>
-              <article class="research-topic">
-                <span class="topic-label">Focus</span>
-                <p>Robust prompting and reasoning systems</p>
-              </article>
-              <article class="research-topic">
-                <span class="topic-label">Focus</span>
-                <p>Spiking neural networks and efficient architectures</p>
-              </article>
-            </div>
-
-            <div class="paper-list" aria-label="Selected publications">
-              <a
-                class="paper-item"
-                href="https://openreview.net/forum?id=RY19y2RI1O"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <span class="paper-meta">2026 · TMLR</span>
-                <span class="paper-title"
-                  >The Landscape of Agentic Reinforcement Learning for LLMs: A
-                  Survey</span
-                >
-              </a>
-              <a
-                class="paper-item"
-                href="https://doi.org/10.18653/v1/2025.emnlp-main.808"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <span class="paper-meta">2025 · EMNLP</span>
-                <span class="paper-title"
-                  >ReSo: A Reward-driven Self-organizing LLM-based Multi-Agent
-                  System for Reasoning Tasks</span
-                >
-              </a>
-              <a
-                class="paper-item"
-                href="https://openreview.net/forum?id=UV58hNygne"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <span class="paper-meta">2025 · TMLR</span>
-                <span class="paper-title"
-                  >HoSNNs: Adversarially-Robust Homeostatic Spiking Neural
-                  Networks with Adaptive Firing Thresholds</span
-                >
-              </a>
-              <a
-                class="paper-item"
-                href="https://pubmed.ncbi.nlm.nih.gov/38966757/"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <span class="paper-meta">2024 · Frontiers in Neuroscience</span>
-                <span class="paper-title"
-                  >Composing Recurrent Spiking Neural Networks using
-                  Locally-Recurrent Motifs and Risk-Mitigating Architectural
-                  Optimization</span
-                >
-              </a>
-              <a
-                class="paper-item"
-                href="https://doi.org/10.48550/arXiv.2310.01441"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <span class="paper-meta">2023 · arXiv</span>
-                <span class="paper-title"
-                  >UPAR: A Kantian-Inspired Prompting Framework for Enhancing
-                  Large Language Model Capabilities</span
-                >
-              </a>
-            </div>
-          </div>
-        </section>
-
-        <section class="section photo-section" id="photo">
-          <div class="section-meta">
-            <span class="section-index">03</span>
-            <span class="section-label">Photo</span>
-          </div>
-          <div class="section-body photo-body">
-            <div>
-              <h2>Photo</h2>
-              <p>Portrait coming soon.</p>
-            </div>
-            <div class="photo-placeholder" aria-hidden="true">
-              <span>Reserved</span>
-            </div>
-          </div>
-        </section>
-
-        <section class="section" id="project">
-          <div class="section-meta">
-            <span class="section-index">04</span>
-            <span class="section-label">Project</span>
-          </div>
-          <div class="section-body">
-            <h2>Project</h2>
-            <p>To be added.</p>
-          </div>
+        <section class="entry-list" aria-label="Site sections">
+          <a class="entry-card" href="./startup.html">
+            <span class="entry-index">01</span>
+            <span class="entry-title">Startup</span>
+            <span class="entry-copy">Independent page</span>
+          </a>
+          <a class="entry-card" href="./research.html">
+            <span class="entry-index">02</span>
+            <span class="entry-title">Research</span>
+            <span class="entry-copy">Papers and directions</span>
+          </a>
+          <a class="entry-card" href="./photo.html">
+            <span class="entry-index">03</span>
+            <span class="entry-title">Photo</span>
+            <span class="entry-copy">Portrait page</span>
+          </a>
+          <a class="entry-card" href="./project.html">
+            <span class="entry-index">04</span>
+            <span class="entry-title">Project</span>
+            <span class="entry-copy">Selected builds</span>
+          </a>
         </section>
       </main>
     </div>
