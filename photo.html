@@ -32,23 +32,62 @@
         </nav>
       </header>
 
-      <main class="detail-main">
-        <section class="detail-hero">
-          <p class="eyebrow">03 / Photo</p>
-          <h1>Photo</h1>
-          <p class="lede">A separate page for portrait and visual material.</p>
+      <main class="detail-main photo-atlas-main">
+        <section class="detail-hero photo-hero">
+          <p class="eyebrow">03 / Photo Atlas</p>
+          <h1>Photo Atlas</h1>
+          <p class="lede">
+            Pin a place, open a memory. This page is built to grow into a
+            living archive of your travel photography.
+          </p>
         </section>
 
-        <section class="content-block photo-block">
-          <div class="photo-placeholder large" aria-hidden="true">
-            <span>Reserved</span>
+        <section class="content-block atlas-shell">
+          <div class="atlas-intro">
+            <p class="block-kicker">Travel Globe</p>
+            <p>
+              Click a marker on the globe to open a destination. Each stop can
+              hold multiple photos, a short note, and its own coordinates.
+            </p>
           </div>
+
+          <div class="atlas-layout">
+            <section class="globe-column" aria-label="Travel globe">
+              <div class="globe-stage">
+                <div class="globe-canvas" data-real-globe></div>
+                <p class="globe-status" data-globe-status>
+                  Loading satellite globe...
+                </p>
+              </div>
+
+              <div class="atlas-metrics" data-atlas-metrics></div>
+            </section>
+          </div>
+        </section>
+
+        <section class="content-block atlas-log-block">
+          <div class="atlas-log-head">
+            <p class="block-kicker">Destinations</p>
+            <p class="atlas-log-copy">
+              Use this as an atlas instead of a fixed gallery. Add a new city,
+              drop in more photos, and the page keeps expanding.
+            </p>
+          </div>
+          <div class="atlas-log" data-atlas-log></div>
+        </section>
+
+        <section class="content-block atlas-manual">
+          <p class="block-kicker">How To Add More</p>
           <p>
-            This page will hold a proper portrait once you have an image worth
-            publishing.
+            Add or rename a folder in <code>./photos/</code> using the pattern
+            <code>Place_YYYY_MM</code>, then run
+            <code>node ./scripts/generate-photo-data.mjs</code>. The page reads
+            the regenerated <code>photo-data.js</code>.
           </p>
         </section>
       </main>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/globe.gl"></script>
+    <script type="module" src="./photo-page.js"></script>
   </body>
 </html>
