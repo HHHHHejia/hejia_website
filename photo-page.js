@@ -12,7 +12,130 @@ const bumpTextureUrl =
 
 const state = {
   activeStopId: atlasStops[0]?.id ?? null,
+  lightboxStopId: null,
+  lightboxIndex: 0,
 };
+
+/* ── Lightbox (built with safe DOM methods) ── */
+const lightboxEl = document.createElement("div");
+lightboxEl.className = "photo-lightbox";
+
+const lbCloseBtn = document.createElement("button");
+lbCloseBtn.className = "lightbox-close";
+lbCloseBtn.setAttribute("aria-label", "Close");
+lbCloseBtn.textContent = "\u00D7";
+lightboxEl.appendChild(lbCloseBtn);
+
+const lbPrevBtn = document.createElement("button");
+lbPrevBtn.className = "lightbox-nav lightbox-prev";
+lbPrevBtn.setAttribute("aria-label", "Previous");
+lbPrevBtn.textContent = "\u2039";
+lightboxEl.appendChild(lbPrevBtn);
+
+const lbContent = document.createElement("div");
+lbContent.className = "lightbox-content";
+
+const lbImg = document.createElement("img");
+lbImg.className = "lightbox-img";
+lbContent.appendChild(lbImg);
+
+const lbVideo = document.createElement("video");
+lbVideo.className = "lightbox-img";
+lbVideo.controls = true;
+lbVideo.style.display = "none";
+lbContent.appendChild(lbVideo);
+
+const lbCaption = document.createElement("p");
+lbCaption.className = "lightbox-caption";
+lbContent.appendChild(lbCaption);
+
+const lbCounter = document.createElement("p");
+lbCounter.className = "lightbox-counter";
+lbContent.appendChild(lbCounter);
+
+lightboxEl.appendChild(lbContent);
+
+const lbNextBtn = document.createElement("button");
+lbNextBtn.className = "lightbox-nav lightbox-next";
+lbNextBtn.setAttribute("aria-label", "Next");
+lbNextBtn.textContent = "\u203A";
+lightboxEl.appendChild(lbNextBtn);
+
+document.body.appendChild(lightboxEl);
+
+function openLightbox(stopId, photoIndex = 0) {
+  const stop = atlasStops.find((s) => s.id === stopId);
+  if (!stop?.photos?.length) return;
+  state.lightboxStopId = stopId;
+  state.lightboxIndex = photoIndex;
+  showLightboxPhoto();
+  lightboxEl.classList.add("is-open");
+  document.body.style.overflow = "hidden";
+}
+
+function closeLightbox() {
+  lightboxEl.classList.remove("is-open");
+  document.body.style.overflow = "";
+  state.lightboxStopId = null;
+  lbVideo.pause();
+  lbVideo.removeAttribute("src");
+}
+
+function isVideoFile(src) {
+  return /\.(mp4|webm|ogg|mov)$/i.test(src);
+}
+
+function showLightboxPhoto() {
+  const stop = atlasStops.find((s) => s.id === state.lightboxStopId);
+  if (!stop?.photos?.length) return;
+  const idx = state.lightboxIndex;
+  const photo = stop.photos[idx];
+  const url = encodeURI(photo.src);
+
+  if (isVideoFile(photo.src)) {
+    lbImg.style.display = "none";
+    lbVideo.style.display = "";
+    lbVideo.src = url;
+    lbVideo.load();
+  } else {
+    lbVideo.style.display = "none";
+    lbVideo.pause();
+    lbVideo.removeAttribute("src");
+    lbImg.style.display = "";
+    lbImg.src = url;
+    lbImg.alt = photo.alt || getDisplayTitle(stop);
+  }
+
+  lbCaption.textContent = photo.caption || getDisplayTitle(stop);
+  lbCounter.textContent = `${idx + 1} / ${stop.photos.length}`;
+}
+
+function lightboxPrev() {
+  const stop = atlasStops.find((s) => s.id === state.lightboxStopId);
+  if (!stop?.photos?.length) return;
+  state.lightboxIndex = (state.lightboxIndex - 1 + stop.photos.length) % stop.photos.length;
+  showLightboxPhoto();
+}
+
+function lightboxNext() {
+  const stop = atlasStops.find((s) => s.id === state.lightboxStopId);
+  if (!stop?.photos?.length) return;
+  state.lightboxIndex = (state.lightboxIndex + 1) % stop.photos.length;
+  showLightboxPhoto();
+}
+
+lbCloseBtn.addEventListener("click", closeLightbox);
+lbPrevBtn.addEventListener("click", lightboxPrev);
+lbNextBtn.addEventListener("click", lightboxNext);
+lightboxEl.addEventListener("click", (e) => {
+  if (e.target === lightboxEl) closeLightbox();
+});
+document.addEventListener("keydown", (e) => {
+  if (!state.lightboxStopId) return;
+  if (e.key === "Escape") closeLightbox();
+  if (e.key === "ArrowLeft") lightboxPrev();
+  if (e.key === "ArrowRight") lightboxNext();
+});
 
 let globe = null;
 let globeResizeObserver = null;
@@ -227,10 +350,9 @@ function renderLog() {
           </div>
           <p class="atlas-stop-kicker">${escapeHtml(stop.region)}</p>
           <h3>${escapeHtml(getDisplayTitle(stop))}</h3>
-          <p class="atlas-stop-meta">${escapeHtml(getDisplayLocation(stop))}<span class="focus-separator"></span>${escapeHtml(
-            stop.when
-          )}</p>
-          <p class="atlas-stop-copy">${escapeHtml(stop.summary)}</p>
+          <p class="atlas-stop-meta">${escapeHtml(getDisplayLocation(stop))}</p>
+          <p class="atlas-stop-meta">${escapeHtml(stop.when)}</p>
+          <p class="atlas-stop-copy">${escapeHtml(buildSummary(stop))}</p>
         </button>
       `;
     })
@@ -251,10 +373,18 @@ function activateStop(stopId) {
   renderLog();
   renderGlobeStatus();
   syncGlobeSelection(true);
+  openLightbox(stop.id);
 }
 
 function getActiveStop() {
   return atlasStops.find((stop) => stop.id === state.activeStopId) || atlasStops[0];
+}
+
+function buildSummary(stop) {
+  const count = stop.photos?.length || 0;
+  const noun = count === 1 ? "photo" : "photos";
+  const city = stop.city || stop.title || "this location";
+  return `${count} ${noun} from ${city} in ${stop.when}.`;
 }
 
 function getDisplayTitle(stop) {
