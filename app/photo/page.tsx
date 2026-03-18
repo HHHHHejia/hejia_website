@@ -1,26 +1,39 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import dynamic from "next/dynamic";
 import { AnimatePresence } from "framer-motion";
-import { atlasStops } from "@/data/photo-data";
+import type { AtlasStop } from "@/data/photo-data";
 import StopCard from "@/components/StopCard";
 import Lightbox from "@/components/Lightbox";
 
 const Globe = dynamic(() => import("@/components/Globe"), { ssr: false });
 
 export default function PhotoPage() {
-  const [activeStopId, setActiveStopId] = useState<string>(
-    atlasStops[0]?.id ?? ""
-  );
+  const [stops, setStops] = useState<AtlasStop[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [activeStopId, setActiveStopId] = useState<string>("");
   const [lightboxStopId, setLightboxStopId] = useState<string | null>(null);
   const [lightboxIndex, setLightboxIndex] = useState(0);
 
-  const regionCount = new Set(atlasStops.map((s) => s.region)).size;
-  const photoCount = atlasStops.reduce(
-    (t, s) => t + s.photos.length,
-    0
-  );
+  useEffect(() => {
+    fetch("/api/atlas")
+      .then((res) => res.json())
+      .then((data) => {
+        setStops(data.stops ?? []);
+        if (data.stops?.length > 0) {
+          setActiveStopId(data.stops[0].id);
+        }
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        setLoading(false);
+      });
+  }, []);
+
+  const regionCount = new Set(stops.map((s) => s.region)).size;
+  const photoCount = stops.reduce((t, s) => t + s.photos.length, 0);
 
   const handleStopClick = useCallback((id: string) => {
     setActiveStopId(id);
@@ -29,7 +42,17 @@ export default function PhotoPage() {
   }, []);
 
   const lightboxPhotos =
-    atlasStops.find((s) => s.id === lightboxStopId)?.photos ?? [];
+    stops.find((s) => s.id === lightboxStopId)?.photos ?? [];
+
+  if (loading) {
+    return (
+      <div className="mx-auto max-w-5xl px-6 pt-20 pb-24">
+        <p className="text-stone text-center mt-20 animate-pulse">
+          Loading atlas...
+        </p>
+      </div>
+    );
+  }
 
   return (
     <div className="mx-auto max-w-5xl px-6 pt-20 pb-24">
@@ -58,7 +81,7 @@ export default function PhotoPage() {
         </div>
 
         <Globe
-          stops={atlasStops}
+          stops={stops}
           activeStopId={activeStopId}
           onStopClick={handleStopClick}
         />
@@ -66,7 +89,7 @@ export default function PhotoPage() {
         {/* Metrics */}
         <div className="grid grid-cols-3 gap-3 mt-5">
           {[
-            { value: atlasStops.length, label: "stops" },
+            { value: stops.length, label: "stops" },
             { value: regionCount, label: "regions" },
             { value: photoCount, label: "images" },
           ].map(({ value, label }) => (
@@ -95,7 +118,7 @@ export default function PhotoPage() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {atlasStops.map((stop, i) => (
+          {stops.map((stop, i) => (
             <StopCard
               key={stop.id}
               stop={stop}

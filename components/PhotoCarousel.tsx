@@ -1,22 +1,28 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { carouselPhotos } from "@/data/photo-data";
 
 export default function PhotoCarousel() {
+  const [photos, setPhotos] = useState<string[]>([]);
   const [index, setIndex] = useState(0);
 
-  const advance = useCallback(() => {
-    setIndex((i) => (i + 1) % carouselPhotos.length);
+  useEffect(() => {
+    fetch("/api/atlas")
+      .then((res) => res.json())
+      .then((data) => setPhotos(data.carouselPhotos ?? []))
+      .catch(console.error);
   }, []);
 
   useEffect(() => {
-    const timer = setInterval(advance, 8000);
+    if (photos.length === 0) return;
+    const timer = setInterval(() => {
+      setIndex((i) => (i + 1) % photos.length);
+    }, 8000);
     return () => clearInterval(timer);
-  }, [advance]);
+  }, [photos.length]);
 
-  if (carouselPhotos.length === 0) return null;
+  if (photos.length === 0) return null;
 
   return (
     <div className="absolute inset-0 overflow-hidden">
@@ -30,14 +36,13 @@ export default function PhotoCarousel() {
           className="absolute inset-0"
         >
           <img
-            src={encodeURI(carouselPhotos[index])}
+            src={photos[index]}
             alt=""
             className="h-full w-full object-cover"
             loading="eager"
           />
         </motion.div>
       </AnimatePresence>
-      {/* Dark overlay for text readability */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/60" />
     </div>
   );
