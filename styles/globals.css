@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+@theme {
+  /* 京都风配色 */
+  --color-washi: #f7f5f0;
+  --color-washi-deep: #eee9e0;
+  --color-ink: #1a1a1a;
+  --color-stone: #9a9590;
+  --color-vermillion: #c2452d;
+  --color-vermillion-light: rgba(194, 69, 45, 0.08);
+  --color-line: rgba(26, 26, 26, 0.08);
+  --color-line-strong: rgba(26, 26, 26, 0.15);
+
+  --font-serif: "Cormorant Garamond", serif;
+  --font-mono: "IBM Plex Mono", monospace;
+  --font-sans: "Manrope", sans-serif;
+}
+
+/* Base */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-ink);
+  background-color: var(--color-washi);
+}
+
+/* Selection */
+::selection {
+  background: rgba(194, 69, 45, 0.14);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-stone);
+  border-radius: 3px;
+}
