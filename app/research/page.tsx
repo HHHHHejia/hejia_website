@@ -1,9 +1,10 @@
-import type { Metadata } from "next";
+"use client";
+
+import { useLanguage } from "@/i18n/LanguageContext";
 import { papers, groupByYear } from "@/data/research-data";
 
-export const metadata: Metadata = { title: "Research | Hejia Geng" };
-
 export default function ResearchPage() {
+  const { t } = useLanguage();
   const grouped = groupByYear(papers);
 
   return (
@@ -11,20 +12,20 @@ export default function ResearchPage() {
       {/* Hero */}
       <section className="max-w-3xl mb-16">
         <p className="font-mono text-[11px] tracking-[0.12em] uppercase text-vermillion mb-5">
-          02 / Research
+          {t("research.label")}
         </p>
         <h1 className="font-serif font-semibold text-[clamp(56px,10vw,120px)] leading-[0.88] tracking-[-0.04em] text-ink">
-          Research
+          {t("research.title")}
         </h1>
         <p className="mt-5 text-stone text-[clamp(16px,2vw,22px)] leading-relaxed">
-          Publications and preprints.
+          {t("research.lede")}
         </p>
       </section>
 
       {/* Papers */}
       <section className="border-t border-line pt-6">
         <p className="font-mono text-[11px] tracking-[0.08em] uppercase text-vermillion mb-6">
-          Publications
+          {t("research.publications")}
         </p>
         <div className="grid gap-0">
           {Array.from(grouped.entries()).map(([year, yearPapers]) => (
@@ -55,7 +56,7 @@ export default function ResearchPage() {
           rel="noreferrer"
           className="inline-block mt-8 text-stone text-[15px] no-underline hover:text-vermillion transition-colors border-b border-line-strong pb-0.5"
         >
-          Google Scholar
+          {t("research.scholar")}
         </a>
       </section>
     </div>

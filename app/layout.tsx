@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import ClientProviders from "@/components/ClientProviders";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import "@/styles/globals.css";
@@ -29,9 +30,11 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen antialiased">
-        <Navbar />
-        <main className="pt-16">{children}</main>
-        <Footer />
+        <ClientProviders>
+          <Navbar />
+          <main className="pt-16">{children}</main>
+          <Footer />
+        </ClientProviders>
       </body>
     </html>
   );

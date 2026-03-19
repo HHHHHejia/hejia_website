@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useCallback } from "react";
 import type { AtlasStop } from "@/data/photo-data";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 interface GlobeProps {
   stops: AtlasStop[];
@@ -10,6 +11,7 @@ interface GlobeProps {
 }
 
 export default function Globe({ stops, activeStopId, onStopClick }: GlobeProps) {
+  const { t } = useLanguage();
   const containerRef = useRef<HTMLDivElement>(null);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const globeRef = useRef<any>(null);
@@ -104,7 +106,7 @@ export default function Globe({ stops, activeStopId, onStopClick }: GlobeProps) 
               <div style="padding:10px 12px;border:1px solid rgba(255,255,255,0.08);border-radius:14px;color:rgba(248,244,238,0.96);background:rgba(10,12,16,0.92);box-shadow:0 18px 30px rgba(0,0,0,0.2)">
                 <strong style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;line-height:0.92;display:block">${s.title}</strong>
                 <span style="color:rgba(222,216,208,0.76);font-size:12px;display:block;margin-top:4px">${s.location}</span>
-                <span style="color:rgba(222,216,208,0.76);font-size:12px;display:block">${s.when}</span>
+                <span style="color:rgba(222,216,208,0.76);font-size:12px;display:block">${s.photos.length} ${t("photo.photosPlural")}</span>
               </div>
             `;
           }
@@ -169,7 +171,7 @@ export default function Globe({ stops, activeStopId, onStopClick }: GlobeProps) 
     }}>
       <div ref={containerRef} className="w-full" style={{ minHeight: "clamp(520px, 68vh, 800px)" }} />
       <p className="absolute left-7 bottom-6 m-0 px-3 py-2 border border-white/8 rounded-full text-white/90 font-mono text-[10px] tracking-[0.08em] uppercase bg-black/40 backdrop-blur-md">
-        {stops.find((s) => s.id === activeStopId)?.title ?? "Globe"} &middot; Drag to orbit
+        {stops.find((s) => s.id === activeStopId)?.title ?? "Globe"} &middot; {t("photo.dragToOrbit")}
       </p>
     </div>
   );

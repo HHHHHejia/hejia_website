@@ -1,6 +1,7 @@
 "use client";
 
 import type { AtlasStop } from "@/data/photo-data";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 interface StopCardProps {
   stop: AtlasStop;
@@ -23,6 +24,7 @@ export default function StopCard({
   isActive,
   onClick,
 }: StopCardProps) {
+  const { t } = useLanguage();
   const firstPhoto = stop.photos[0];
 
   return (
@@ -61,9 +63,9 @@ export default function StopCard({
         {stop.title}
       </h3>
       <p className="text-stone text-[13px]">{stop.location}</p>
-      <p className="text-stone text-[13px]">{stop.when}</p>
       <p className="text-stone text-sm leading-relaxed">
-        {stop.photos.length} photo{stop.photos.length !== 1 ? "s" : ""}
+        {stop.photos.length}{" "}
+        {stop.photos.length !== 1 ? t("photo.photosPlural") : t("photo.photos")}
       </p>
     </button>
   );
